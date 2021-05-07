@@ -1,0 +1,37 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>uk.co.danielbryant.djshopping</groupId>
+    <artifactId>JAVASampleAPP</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>productcatalogue</module>
+        <module>shopfront</module>
+        <module>stockmanager</module>
+    </modules>
+
+    <properties>
+        <skip.incremental>true</skip.incremental>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.java.maven-incremental-build</groupId>
+                <artifactId>incremental-build-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>incremental-build</goal>
+                        </goals>
+                        <configuration>
+                            <noIncrementalBuild>${skip.incremental}</noIncrementalBuild>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

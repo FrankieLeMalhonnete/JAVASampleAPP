@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dropwizard.version>1.3.27</dropwizard.version>
         <guice.version>4.2.3</guice.version>
+        <skip.incremental>false</skip.incremental>
     </properties>
 
     <dependencies>
