@@ -23,9 +23,9 @@ pipeline {
       steps {
         echo "Current working directory : "
         sh 'pwd'
-        sh "curl -u ${env.NEXUS_CRED_USR}:${env.NEXUS_CRED_PSW} --upload-file productcatalogue/target/*.jar 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/productcatalogue-0.0.1-SNAPSHOT-{BUILD_NUMBER}.jar'"
-        sh "curl -u ${env.NEXUS_CRED_USR}:${env.NEXUS_CRED_PSW} --upload-file shopfront/target/*.jar 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/shopfront-0.0.1-SNAPSHOT-{BUILD_NUMBER}.jar'"
-        sh "curl -u ${env.NEXUS_CRED_USR}:${env.NEXUS_CRED_PSW} --upload-file stockmanager/target*.jar 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/stockmanager-0.0.1-SNAPSHOT-{BUILD_NUMBER}.jar'"
+        sh "curl -u ${env.NEXUS_CRED_USR}:${env.NEXUS_CRED_PSW} --upload-file productcatalogue/target/*.jar 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/productcatalogue-0.0.1-SNAPSHOT-${BUILD_NUMBER}.jar'"
+        sh "curl -u ${env.NEXUS_CRED_USR}:${env.NEXUS_CRED_PSW} --upload-file shopfront/target/*.jar 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/shopfront-0.0.1-SNAPSHOT-${BUILD_NUMBER}.jar'"
+        sh "curl -u ${env.NEXUS_CRED_USR}:${env.NEXUS_CRED_PSW} --upload-file stockmanager/target/*.jar 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/stockmanager-0.0.1-SNAPSHOT-${BUILD_NUMBER}.jar'"
       }
     }
   }
