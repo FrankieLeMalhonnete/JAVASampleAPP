@@ -5,7 +5,7 @@ pipeline {
   environment {
     NEXUS_HOST     = '10.10.20.31:8081'
     NEXUS_JAR_REPO = 'storefront_jars_depot'
-    NEXUS_PATH     = 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/'
+    NEXUS_PATH     = 'http://${env.NEXUS_HOST}/repository/${env.NEXUS_JAR_REPO}'
     NEXUS_CRED     = credentials('13f41f0b-b263-4a43-855b-82ffcb0611c0') // => NEXUS_CRED_USR NEXUS_CRED_PSW
     DOCKERHUB_CRED = credentials('aef12c4d-d115-47c1-ad7b-3d8744dc29fa') // => DOCKERHUB_CRED_USR DOCKERHUB_CRED_PSW
     
