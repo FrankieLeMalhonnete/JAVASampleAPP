@@ -21,7 +21,7 @@ pipeline {
     }
     stage ('Publication du binaire') {
       steps {
-        sh "curl -u ${NEXUS_CRED_USR}:${NEXUS_CRED_PSW} --upload-file target/*.war 'http://${NEXUS_ADDRESS}/repository/${NEXUS_JAR_REPO}/app${BUILD_NUMBER}.war'"
+        sh "curl -u ${env.NEXUS_CRED_USR}:${env.NEXUS_CRED_PSW} --upload-file target/*.war 'http://${env.NEXUS_ADDRESS}/repository/${env.NEXUS_JAR_REPO}/app${BUILD_NUMBER}.war'"
       }
     }
   }
