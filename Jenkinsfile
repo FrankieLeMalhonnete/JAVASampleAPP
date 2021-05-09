@@ -32,15 +32,17 @@ pipeline {
       stages {
         stage('-----> Compilation des images') {
           steps {
-            sh "docker build -t frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} ./productcatalogue/"
+            echo "Current working directory : "
+            sh 'pwd'
+            sh "docker build -t frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} productcatalogue/"
             sh "docker tag frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/storeapp/productcatalogue:latest"
             //-------------------------------------------------------------------------------------------------------
-            sh "docker build -t frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} ./shopfront/"
+            sh "docker build -t frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} shopfront/"
             sh "docker tag frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/storeapp/shopfront:latest"
             //-------------------------------------------------------------------------------------------------------
-            sh "docker build -t frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} ./stockmanager/"
+            sh "docker build -t frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} stockmanager/"
             sh "docker tag frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/storeapp/stockmanager:latest"
           }
