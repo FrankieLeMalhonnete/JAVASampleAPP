@@ -54,15 +54,15 @@ pipeline {
             sh 'whoami'
             sh "docker login -u ${env.DOCKERHUB_CRED_USR} -p ${env.DOCKERHUB_CRED_PSW}"
             sh "docker build -t frankielemalhonnete/productcatalogue:${BUILD_NUMBER} productcatalogue/"
-            sh "docker tag frankielemalhonnete/productcatalogue:${BUILD_NUMBER} frankielemalhonnete/productcatalogue:${BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/productcatalogue:${BUILD_NUMBER} frankielemalhonnete/productcatalogue:${BRANCH_NAME}-${BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/productcatalogue:${BUILD_NUMBER} frankielemalhonnete/productcatalogue:latest"
             //-------------------------------------------------------------------------------------------------------
             sh "docker build -t frankielemalhonnete/shopfront:${BUILD_NUMBER} shopfront/"
-            sh "docker tag frankielemalhonnete/shopfront:${BUILD_NUMBER} frankielemalhonnete/shopfront:${BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/shopfront:${BUILD_NUMBER} frankielemalhonnete/shopfront:${BRANCH_NAME}-${BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/shopfront:${BUILD_NUMBER} frankielemalhonnete/shopfront:latest"
             //-------------------------------------------------------------------------------------------------------
             sh "docker build -t frankielemalhonnete/stockmanager:${BUILD_NUMBER} stockmanager/"
-            sh "docker tag frankielemalhonnete/stockmanager:${BUILD_NUMBER} frankielemalhonnete/stockmanager:${BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/stockmanager:${BUILD_NUMBER} frankielemalhonnete/stockmanager:${BRANCH_NAME}-${BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/stockmanager:${BUILD_NUMBER} frankielemalhonnete/stockmanager:latest"
             sh "docker logout"
           }
