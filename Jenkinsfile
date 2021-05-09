@@ -37,7 +37,7 @@ pipeline {
             echo "Current user : "
             sh 'whoami'
             sh "docker login -u ${env.DOCKERHUB_CRED_USR} -p ${env.DOCKERHUB_CRED_PSW}"
-            sh "docker build -t frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} productcatalogue/"
+            sh "docker build -t frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER} productcatalogue/"
             sh "docker tag frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/productcatalogue:latest"
             //-------------------------------------------------------------------------------------------------------
