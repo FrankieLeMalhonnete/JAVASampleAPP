@@ -37,16 +37,16 @@ pipeline {
             echo "Current user : "
             sh 'whoami'
             sh "docker build -t frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} productcatalogue/"
-            sh "docker tag frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER}"
-            sh "docker tag frankielemalhonnete/storeapp/productcatalogue:latest"
+            sh "docker tag frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/productcatalogue:latest"
             //-------------------------------------------------------------------------------------------------------
             sh "docker build -t frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} shopfront/"
-            sh "docker tag frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER}"
-            sh "docker tag frankielemalhonnete/storeapp/shopfront:latest"
+            sh "docker tag frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/shopfront:latest"
             //-------------------------------------------------------------------------------------------------------
             sh "docker build -t frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} stockmanager/"
-            sh "docker tag frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER}"
-            sh "docker tag frankielemalhonnete/storeapp/stockmanager:latest"
+            sh "docker tag frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/stockmanager:latest"
           }
         }
         stage('-----> Stockage des images') {
