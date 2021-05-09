@@ -36,30 +36,33 @@ pipeline {
             sh 'pwd'
             echo "Current user : "
             sh 'whoami'
+            sh "docker login -u ${env.DOCKERHUB_CRED_USR} -p ${env.DOCKERHUB_CRED_PSW}"
             sh "docker build -t frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} productcatalogue/"
-            sh "docker tag frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER}"
-            sh "docker tag frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/productcatalogue:latest"
+            sh "docker tag frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER} frankielemalhonnete/productcatalogue:latest"
             //-------------------------------------------------------------------------------------------------------
-            sh "docker build -t frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} shopfront/"
-            sh "docker tag frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER}"
-            sh "docker tag frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/shopfront:latest"
+            sh "docker build -t frankielemalhonnete/shopfront:${env.BUILD_NUMBER} shopfront/"
+            sh "docker tag frankielemalhonnete/shopfront:${env.BUILD_NUMBER} frankielemalhonnete/shopfront:${env.BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/shopfront:${env.BUILD_NUMBER} frankielemalhonnete/shopfront:latest"
             //-------------------------------------------------------------------------------------------------------
-            sh "docker build -t frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} stockmanager/"
-            sh "docker tag frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER}"
-            sh "docker tag frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER} frankielemalhonnete/storeapp/stockmanager:latest"
+            sh "docker build -t frankielemalhonnete/stockmanager:${env.BUILD_NUMBER} stockmanager/"
+            sh "docker tag frankielemalhonnete/stockmanager:${env.BUILD_NUMBER} frankielemalhonnete/stockmanager:${env.BUILD_NUMBER}"
+            sh "docker tag frankielemalhonnete/stockmanager:${env.BUILD_NUMBER} frankielemalhonnete/stockmanager:latest"
+            sh "docker logout"
           }
         }
         stage('-----> Stockage des images') {
           steps {
-            sh "docker login -u ${env.DOCKERHUB_CRED_USR} -p ${env.DOCKERHUB_CRED_PSW}"
-            sh "docker push frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER}"
-            sh "docker push frankielemalhonnete/storeapp/productcatalogue:latest"
+            sh "docker login -u ${env.DOCKERHUB_CRED_USR} -p ${env.DOCKERHUB_CRED_PSW} "
+            sh "docker push frankielemalhonnete/productcatalogue:${env.BUILD_NUMBER}"
+            sh "docker push frankielemalhonnete/productcatalogue:latest"
             //-------------------------------------------------------------------------------
-            sh "docker push frankielemalhonnete/storeapp/shopfront:${env.BUILD_NUMBER}"
-            sh "docker push frankielemalhonnete/storeapp/shopfront:latest"
+            sh "docker push frankielemalhonnete/shopfront:${env.BUILD_NUMBER}"
+            sh "docker push frankielemalhonnete/shopfront:latest"
             //-------------------------------------------------------------------------------
-            sh "docker push frankielemalhonnete/storeapp/stockmanager:${env.BUILD_NUMBER}"
-            sh "docker push frankielemalhonnete/storeapp/stockmanager:latest"
+            sh "docker push frankielemalhonnete/stockmanager:${env.BUILD_NUMBER}"
+            sh "docker push frankielemalhonnete/stockmanager:latest"
+            sh "docker logout"
           }
         }
       }
