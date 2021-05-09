@@ -34,6 +34,8 @@ pipeline {
           steps {
             echo "Current working directory : "
             sh 'pwd'
+            echo "Current user : "
+            sh 'whoami'
             sh "docker build -t frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER} productcatalogue/"
             sh "docker tag frankielemalhonnete/storeapp/productcatalogue:${env.BUILD_NUMBER}"
             sh "docker tag frankielemalhonnete/storeapp/productcatalogue:latest"
