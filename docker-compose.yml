@@ -1,0 +1,17 @@
+version: '3'
+services:
+  shopfront:
+    image: frankielemalhonnete/shopfront
+    ports:
+     - "8010:8010"
+    links:
+      - productcatalogue
+      - stockmanager
+  productcatalogue:
+    image: frankielemalhonnete/productcatalogue
+    ports:
+     - "8020:8020"
+  stockmanager:
+    image: frankielemalhonnete/stockmanager
+    ports:
+     - "8030:8030"
