@@ -9,10 +9,10 @@ pipeline {
     NEXUS_CRED          = credentials('13f41f0b-b263-4a43-855b-82ffcb0611c0') // => NEXUS_CRED_USR NEXUS_CRED_PSW
     DOCKERHUB_CRED      = credentials('aef12c4d-d115-47c1-ad7b-3d8744dc29fa') // => DOCKERHUB_CRED_USR DOCKERHUB_CRED_PSW
   }
-  tools {
-    maven 'mvn3.6.0'
-    jdk 'jdk1.8.0'
-  }
+  //tools {
+  //  maven 'mvn3.6.0'
+  //  jdk 'jdk1.8.0'
+  //}
   stages {
     stage('===> Tests unitaires') {
       steps {
@@ -20,19 +20,19 @@ pipeline {
       }
      }
     stage('===> Compilation') {
-      parallel {
-        stage ('Maven build') {
+      //parallel {
+        //stage ('Maven build') {
           steps {
             sh 'mvn -B -DskipTests clean package'
           }
-        }
-        stage ('Checkstyle') {
-          steps {
-            sh "mvn checkstyle:check"
-            recordIssues(tools: [checkStyle(reportEncoding: 'UTF-8')])
-          }
-        }
-      }
+        //}
+        //stage ('Checkstyle') {
+        //  steps {
+        //    sh "mvn checkstyle:check"
+        //    recordIssues(tools: [checkStyle(reportEncoding: 'UTF-8')])
+        //  }
+        //}
+      //}
     }
     stage ('===> Publication du binaire de prod') {
       when {
