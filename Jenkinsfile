@@ -83,6 +83,7 @@ pipeline {
             sh "docker logout"
           }
         }
+        /*
         stage ('-----> Verification de l\'image productcatalogue') {
           agent {
             label 'docker_agent' {
@@ -122,6 +123,7 @@ pipeline {
             }
           }
         }
+        */
         stage('-----> Stockage des images') {
           steps {
             sh "docker login -u ${env.DOCKERHUB_CRED_USR} -p ${env.DOCKERHUB_CRED_PSW} "
