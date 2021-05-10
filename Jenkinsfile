@@ -104,13 +104,13 @@ pipeline {
         withKubeConfig({credentialsID: 'Kube-config'}) {
           sh 'cd kubernetes/'
           sh 'kubectl cluster-info'
-          sh 'kubectl create -f .\deployment-productcatalogue.yml'
-          sh 'kubectl create -f .\deployment-stockmanager.yml'
-          sh 'kubectl create -f .\deployment-shopfront.yml'
-          sh 'kubectl create -f .\service-productcatalogue.yml'
-          sh 'kubectl create -f .\service-stockmanager.yml'
-          sh 'kubectl create -f .\service-shopfront.yml'
-          sh 'kubectl create -f .\ingress-shopfront.yml'
+          sh 'kubectl create -f .\\deployment-productcatalogue.yml'
+          sh 'kubectl create -f .\\deployment-stockmanager.yml'
+          sh 'kubectl create -f .\\deployment-shopfront.yml'
+          sh 'kubectl create -f .\\service-productcatalogue.yml'
+          sh 'kubectl create -f .\\service-stockmanager.yml'
+          sh 'kubectl create -f .\\service-shopfront.yml'
+          sh 'kubectl create -f .\\ingress-shopfront.yml'
         }
       }
     }
