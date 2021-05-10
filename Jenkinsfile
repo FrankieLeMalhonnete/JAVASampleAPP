@@ -20,7 +20,7 @@ pipeline {
         sh 'whoami'
         sh 'mvn test'
       }
-     }
+    }
     stage('===> Compilation') {
       //parallel {
         //stage ('Maven build') {
@@ -83,6 +83,45 @@ pipeline {
             sh "docker logout"
           }
         }
+        stage ('-----> Verification de l\'image productcatalogue') {
+          agent {
+            docker {
+              image frankielemalhonnete/productcatalogue:${BUILD_NUMBER}
+              args '-p 9001:9001'
+            }
+          }
+          steps {
+            script {
+              sh 'curl localhost:9001'
+            }
+          }
+        }
+        stage('-----> Verification de l\'image shopfront') {
+          agent {
+            docker {
+              image frankielemalhonnete/shopfront:${BUILD_NUMBER}
+              args '-p 9002:9002'
+            }
+          }
+          steps {
+            script {
+              sh 'curl localhost:9002'
+            }
+          }
+        }
+        stage('-----> Verification de l\'image stockmanager') {
+          agent {
+            docker {
+              image frankielemalhonnete/stockmanager:${BUILD_NUMBER}
+              args '-p 9003:9003'
+            }
+          }
+          steps {
+            script {
+              sh 'curl localhost:9003'
+            }
+          }
+        }
         stage('-----> Stockage des images') {
           steps {
             sh "docker login -u ${env.DOCKERHUB_CRED_USR} -p ${env.DOCKERHUB_CRED_PSW} "
@@ -114,5 +153,10 @@ pipeline {
         }
       }
     }
+  }
+  always {
+    // remove built docker image and prune system
+    print 'Cleaning up the Docker system.'
+    sh 'docker system prune -f'
   }
 }
