@@ -16,6 +16,8 @@ pipeline {
   stages {
     stage('===> Tests unitaires') {
       steps {
+        echo "Current user : "
+        sh 'whoami'
         sh 'mvn test'
       }
      }
