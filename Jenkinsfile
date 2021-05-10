@@ -156,9 +156,11 @@ pipeline {
     }
     */
   }
-  always {
-    // remove built docker image and prune system
-    print 'Cleaning up the Docker system.'
-    sh 'docker system prune -f'
+  post {
+    always {
+      // remove built docker image and prune system
+      print 'Cleaning up the Docker system.'
+      sh 'docker system prune -f'
+    }
   }
 }
