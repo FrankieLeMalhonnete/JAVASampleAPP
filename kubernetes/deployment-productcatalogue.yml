@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogue
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0%
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: productcatalogue
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: productcatalogue
+    spec:
+      containers:
+      - name: productcatalogue
+        image: frankielemalhonnete/productcatalogue:main-27
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8020
+...

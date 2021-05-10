@@ -16,6 +16,8 @@ pipeline {
   stages {
     stage('===> Tests unitaires') {
       steps {
+        echo "Current user : "
+        sh 'whoami'
         sh 'mvn test'
       }
      }
@@ -94,6 +96,21 @@ pipeline {
             sh "docker push frankielemalhonnete/stockmanager:latest"
             sh "docker logout"
           }
+        }
+      }
+    }
+    stage ('Deploiement sur EKS') {
+      steps {
+        withKubeConfig({credentialsID: 'Kube-config'}) {
+          sh 'cd kubernetes/'
+          sh 'kubectl cluster-info'
+          sh 'kubectl create -f .\deployment-productcatalogue.yml'
+          sh 'kubectl create -f .\deployment-stockmanager.yml'
+          sh 'kubectl create -f .\deployment-shopfront.yml'
+          sh 'kubectl create -f .\service-productcatalogue.yml'
+          sh 'kubectl create -f .\service-stockmanager.yml'
+          sh 'kubectl create -f .\service-shopfront.yml'
+          sh 'kubectl create -f .\ingress-shopfront.yml'
         }
       }
     }

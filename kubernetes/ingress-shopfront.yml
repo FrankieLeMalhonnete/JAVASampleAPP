@@ -1,0 +1,15 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-shopfront
+spec:
+  rules:
+  - host: web-nodeport.ilkilab.io
+    http:
+      paths:
+        - path: /*
+          backend:
+            serviceName: shopfront
+            servicePort: 8010
+...
