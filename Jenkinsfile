@@ -85,7 +85,7 @@ pipeline {
         }
         stage ('-----> Verification de l\'image productcatalogue') {
           agent {
-            docker {
+            label 'docker_agent' {
               image 'frankielemalhonnete/productcatalogue:${BUILD_NUMBER}'
               args '-p 9001:9001'
             }
@@ -98,7 +98,7 @@ pipeline {
         }
         stage('-----> Verification de l\'image shopfront') {
           agent {
-            docker {
+            label 'docker_agent' {
               image 'frankielemalhonnete/shopfront:${BUILD_NUMBER}'
               args '-p 9002:9002'
             }
@@ -111,7 +111,7 @@ pipeline {
         }
         stage('-----> Verification de l\'image stockmanager') {
           agent {
-            docker {
+            label 'docker_agent' {
               image 'frankielemalhonnete/stockmanager:${BUILD_NUMBER}'
               args '-p 9003:9003'
             }
@@ -138,6 +138,7 @@ pipeline {
         }
       }
     }
+    /*
     stage ('Deploiement sur EKS') {
       steps {
         withKubeConfig({credentialsID: 'Kube-config'}) {
@@ -153,6 +154,7 @@ pipeline {
         }
       }
     }
+    */
   }
   always {
     // remove built docker image and prune system
