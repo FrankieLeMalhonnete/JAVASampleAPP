@@ -86,7 +86,7 @@ pipeline {
         stage ('-----> Verification de l\'image productcatalogue') {
           agent {
             docker {
-              image frankielemalhonnete/productcatalogue:${BUILD_NUMBER}
+              image 'frankielemalhonnete/productcatalogue:${BUILD_NUMBER}'
               args '-p 9001:9001'
             }
           }
@@ -99,7 +99,7 @@ pipeline {
         stage('-----> Verification de l\'image shopfront') {
           agent {
             docker {
-              image frankielemalhonnete/shopfront:${BUILD_NUMBER}
+              image 'frankielemalhonnete/shopfront:${BUILD_NUMBER}'
               args '-p 9002:9002'
             }
           }
@@ -112,7 +112,7 @@ pipeline {
         stage('-----> Verification de l\'image stockmanager') {
           agent {
             docker {
-              image frankielemalhonnete/stockmanager:${BUILD_NUMBER}
+              image 'frankielemalhonnete/stockmanager:${BUILD_NUMBER}'
               args '-p 9003:9003'
             }
           }
